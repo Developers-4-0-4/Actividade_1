@@ -3,13 +3,13 @@ const app = exepress()
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const dotenv = require('dotenv').config();
-const routaProdutos = require('./routers/Produtos')
+const Produtos = require('./routers/Produtos')
 
 app.use(cors())
 app.use(bodyParser.urlencoded({ extends: false }))
 app.use(bodyParser.json())
 
-app.use('/produtos', routaProdutos)
+app.use('/produtos', Produtos)
 
 app.listen(3008, (error) => {
     if (!error) {
