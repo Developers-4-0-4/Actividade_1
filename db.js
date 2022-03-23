@@ -1,16 +1,11 @@
-const Sequelize = require('sequelize')
-const sequelize = new Sequelize('actividade_1','root','',{
-    host:'localhost',
-    dialect:'mysql'
+const db = require('mysql2')
+
+const pool = db.createPool({
+    "user" : process.env.MYSQL_USER,
+    "password" : process.env.MYSQL_PASSWORD,
+    "database" : process.env.MYSQL_DB,
+    "host" : process.env.MYSQL_HOST,
+    "port" : process.env.MYSQL_PORT
 })
 
-sequelize.authenticate().then(()=>{
-    console.log("Conectado com sucesso")
-}).catch((err)=>{
-    console.log("Ocorreu um erro no servidor"+err)
-})
-
-module.exports ={
-    Sequelize:Sequelize,
-    sequelize:sequelize
-}
+exports.pool = pool
