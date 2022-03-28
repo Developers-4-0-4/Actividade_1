@@ -42,10 +42,11 @@ exports.patch = async (req, res, next) => {
 
 exports.delete = async (req, res, next) => {
 
-    const id = req.body.id_produto
+     const id = req.body.id_produto
 
     try {
         
+       
         const result = await db.execute('DELETE FROM produtos WHERE id = ?', [id]) 
 
         const response = {
@@ -59,6 +60,7 @@ exports.delete = async (req, res, next) => {
 
         return res.status(202).send( response )
     } catch (error) {
+        console.log(error)
      return res.status(500).send({ error : error })   
     }
 }
